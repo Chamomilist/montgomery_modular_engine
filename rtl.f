@@ -5,3 +5,4 @@ rtl/register_bank.sv
 rtl/mux2to1.sv
 rtl/adder.sv
 rtl/montgomery_datapath.sv
+rtl/controller_fsm.sv
