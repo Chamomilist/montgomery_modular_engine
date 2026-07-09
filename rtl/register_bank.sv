@@ -13,10 +13,14 @@ module register_bank #(parameter int WIDTH = 256)
     input logic [WIDTH-1:0] N_in,
     input logic [WIDTH-1:0] T_in,
 
+    input logic [$clog2(WIDTH)-1:0] bit_index,
+
     output logic [WIDTH-1:0] A,
     output logic [WIDTH-1:0] B,
     output logic [WIDTH-1:0] N,
-    output logic [WIDTH-1:0] T
+    output logic [WIDTH-1:0] T,
+
+    output logic current_bit
 );
 
 
@@ -55,5 +59,8 @@ reg_T (
     .d(T_in),
     .q(T)
 );
+
+// Read the current bit of B selected by the bit counter
+assign current_bit = B[bit_index];
 
 endmodule
