@@ -1,0 +1,9 @@
+# Simulation executable
+sim
+# Waveforms
+waves/*.vcd
+# GTKWave save files
+*.gtkw
+# Temporary/editor files
+*.log
+*.tmp
