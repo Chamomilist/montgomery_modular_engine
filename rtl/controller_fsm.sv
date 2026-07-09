@@ -4,6 +4,14 @@ module controller_fsm
     input logic rst,
     input logic start,
 
+    output logic load_A,
+    output logic load_B,
+    output logic load_N,
+    output logic load_T,
+
+    output logic counter_enable,
+    output logic compute_enable,
+
     output logic done
 );
 
@@ -54,18 +62,46 @@ end
 
 // Output logic
 
+// Output logic
+
 always_comb begin
+
+    // Default outputs
+    load_A = 1'b0;
+    load_B = 1'b0;
+    load_N = 1'b0;
+    load_T = 1'b0;
+    counter_enable = 1'b0;
+    compute_enable = 1'b0;
     done = 1'b0;
 
     case (state)
 
-        DONE:
-            done = 1'b1;
+        IDLE: begin
+            // Wait for start
+        end
 
-        default:
-            done = 1'b0;
+        LOAD: begin
+            load_A = 1'b1;
+            load_B = 1'b1;
+            load_N = 1'b1;
+            load_T = 1'b1;
+        end
+
+        COMPUTE: begin
+            compute_enable = 1'b1;
+            counter_enable = 1'b1;
+        end
+
+        DONE: begin
+            done = 1'b1;
+        end
+
+        default: begin
+        end
 
     endcase
+
 end
 
 endmodule

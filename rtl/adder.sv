@@ -8,10 +8,8 @@ module adder #(parameter int WIDTH = 256)
 
 logic [WIDTH:0] result;
 
-always_comb begin
-    result = A + B;
-    sum = result[WIDTH-1:0];
-    carry_out = result[WIDTH];
-end
+assign result = A + B;
+assign sum = result[WIDTH-1:0];
+assign carry_out = result[WIDTH];
 
 endmodule

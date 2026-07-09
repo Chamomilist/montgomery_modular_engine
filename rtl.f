@@ -7,3 +7,4 @@ rtl/adder.sv
 rtl/montgomery_datapath.sv
 rtl/controller_fsm.sv
 rtl/bit_counter.sv
+rtl/montgomery_engine.sv
