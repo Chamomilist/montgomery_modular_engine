@@ -4,6 +4,8 @@ module controller_fsm
     input logic rst,
     input logic start,
 
+    input logic counter_done,
+
     output logic load_A,
     output logic load_B,
     output logic load_N,
@@ -15,10 +17,12 @@ module controller_fsm
     output logic done
 );
 
-typedef enum logic [1:0] {
+typedef enum logic [2:0] {
     IDLE,
     LOAD,
     COMPUTE,
+    UPDATE_T,
+    NEXT_BIT,
     DONE
 } state_t;
 
@@ -49,7 +53,17 @@ always_comb begin
             next_state = COMPUTE;
 
         COMPUTE:
-            next_state = DONE;
+            next_state = UPDATE_T;
+
+        UPDATE_T:
+            next_state = NEXT_BIT;
+
+        NEXT_BIT: begin
+            if (counter_done)
+                next_state = DONE;
+            else
+                next_state = COMPUTE;
+        end
 
         DONE:
             next_state = IDLE;
@@ -59,8 +73,6 @@ always_comb begin
 
     endcase
 end
-
-// Output logic
 
 // Output logic
 
@@ -90,6 +102,13 @@ always_comb begin
 
         COMPUTE: begin
             compute_enable = 1'b1;
+        end
+
+        UPDATE_T: begin
+            load_T = 1'b1;
+        end
+
+        NEXT_BIT: begin
             counter_enable = 1'b1;
         end
 
