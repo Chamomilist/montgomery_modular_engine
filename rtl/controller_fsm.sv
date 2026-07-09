@@ -12,7 +12,6 @@ module controller_fsm
     output logic load_T,
 
     output logic counter_enable,
-    output logic compute_enable,
 
     output logic done
 );
@@ -84,7 +83,6 @@ always_comb begin
     load_N = 1'b0;
     load_T = 1'b0;
     counter_enable = 1'b0;
-    compute_enable = 1'b0;
     done = 1'b0;
 
     case (state)
@@ -101,7 +99,8 @@ always_comb begin
         end
 
         COMPUTE: begin
-            compute_enable = 1'b1;
+            // Datapath evaluates combinationally
+            // No control signals asserted in this state
         end
 
         UPDATE_T: begin

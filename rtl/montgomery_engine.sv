@@ -14,28 +14,28 @@ module montgomery_engine #(parameter int WIDTH = 256)
 
 // Internal Signals
 
-logic [WIDTH-1:0] datapath_result;
-
+// Register outputs
 logic [WIDTH-1:0] reg_A;
 logic [WIDTH-1:0] reg_B;
 logic [WIDTH-1:0] reg_N;
 logic [WIDTH-1:0] reg_T;
 
+// Datapath signals
+logic [WIDTH-1:0] datapath_result;
 logic current_bit;
 logic sum_is_odd;
 logic carry_out;
+
+// Counter signals
+logic [$clog2(WIDTH)-1:0] bit_index;
 logic counter_done;
 
-logic [$clog2(WIDTH)-1:0] bit_index;
-
+// FSM signals
 logic load_A;
 logic load_B;
 logic load_N;
 logic load_T;
-
 logic counter_enable;
-logic compute_enable;
-
 
 // Controller FSM
 
@@ -51,7 +51,6 @@ controller_fsm controller (
     .load_T(load_T),
 
     .counter_enable(counter_enable),
-    .compute_enable(compute_enable),
 
     .done(done)
 );
@@ -83,7 +82,7 @@ registers (
     .A_in(A),
     .B_in(B),
     .N_in(N),
-    .T_in(datapath_result),
+    .T_in(datapath_result), // Feed datapath result back into T
 
     .bit_index(bit_index),
 
@@ -114,7 +113,7 @@ datapath (
 
 cond_sub #(.WIDTH(WIDTH))
 final_reduction (
-    .value(datapath_result),
+    .value(reg_T), // Initially, it was datapath_result, caused error
     .modulus(reg_N),
     .result(result)
 );

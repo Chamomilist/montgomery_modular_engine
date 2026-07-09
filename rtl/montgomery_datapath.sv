@@ -14,7 +14,7 @@ module montgomery_datapath #(parameter int WIDTH = 256)
 logic [WIDTH-1:0] operand;
 // Internal wire between adder and shifter
 logic [WIDTH-1:0] sum;
-// Internal wires for sum adjustment part
+// Intermediate results used during Montgomery reduction
 logic [WIDTH-1:0] adjusted_sum;
 logic [WIDTH-1:0] sum_plus_N;
 
