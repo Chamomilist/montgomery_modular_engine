@@ -1,0 +1,211 @@
+
+19. Printing statistics.
+
+=== montgomery_engine ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       24 wires
+     2581 wire bits
+       24 public wires
+     2581 public wire bits
+        8 ports
+     1028 port bits
+      256 cells
+      256   $_ANDNOT_
+        5 submodules
+        1   $paramod\bit_counter\WIDTH=s32'00000000000000000000000100000000
+        1   $paramod\cond_sub\WIDTH=s32'00000000000000000000000100000000
+        1   $paramod\montgomery_datapath\WIDTH=s32'00000000000000000000000100000000
+        1   $paramod\register_bank\WIDTH=s32'00000000000000000000000100000000
+        1   controller_fsm
+
+=== $paramod\montgomery_datapath\WIDTH=s32'00000000000000000000000100000000 ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       13 wires
+     2054 wire bits
+       13 public wires
+     2054 public wire bits
+        7 ports
+     1027 port bits
+      256 cells
+      256   $_MUX_
+        3 submodules
+        2   $paramod\adder\WIDTH=s32'00000000000000000000000100000000
+        1   $paramod\mux2to1\WIDTH=s32'00000000000000000000000100000000
+
+=== $paramod\mux2to1\WIDTH=s32'00000000000000000000000100000000 ===
+
+        +----------Local Count, excluding submodules.
+        | 
+        4 wires
+      769 wire bits
+        4 public wires
+      769 public wire bits
+        4 ports
+      769 port bits
+      256 cells
+      256   $_MUX_
+
+=== controller_fsm ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       20 wires
+       24 wire bits
+       12 public wires
+       16 public wire bits
+       10 ports
+       10 port bits
+       18 cells
+        5   $_ANDNOT_
+        1   $_AND_
+        3   $_DFFE_PP0P_
+        1   $_MUX_
+        4   $_NAND_
+        2   $_NOR_
+        1   $_ORNOT_
+        1   $_OR_
+
+=== $paramod\cond_sub\WIDTH=s32'00000000000000000000000100000000 ===
+
+        +----------Local Count, excluding submodules.
+        | 
+     1724 wires
+     2489 wire bits
+        3 public wires
+      768 public wire bits
+        3 ports
+      768 port bits
+     1977 cells
+       83   $_ANDNOT_
+      345   $_AND_
+      255   $_MUX_
+      464   $_NAND_
+       57   $_NOR_
+        6   $_NOT_
+      365   $_ORNOT_
+       18   $_OR_
+      256   $_XNOR_
+      128   $_XOR_
+
+=== $paramod\register_bank\WIDTH=s32'00000000000000000000000100000000 ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      540 wires
+     2587 wire bits
+       16 public wires
+     2063 public wire bits
+       16 ports
+     2063 port bits
+      525 cells
+       14   $_ANDNOT_
+      104   $_AND_
+      120   $_MUX_
+      119   $_NAND_
+       21   $_NOR_
+       80   $_ORNOT_
+       67   $_OR_
+        4 submodules
+        4   $paramod\data_register\WIDTH=s32'00000000000000000000000100000000
+
+=== $paramod\bit_counter\WIDTH=s32'00000000000000000000000100000000 ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       30 wires
+       44 wire bits
+        6 public wires
+       13 public wire bits
+        6 ports
+       13 port bits
+       40 cells
+        6   $_ANDNOT_
+        8   $_AND_
+        8   $_DFFE_PP0P_
+        1   $_NAND_
+       15   $_NOR_
+        1   $_NOT_
+        1   $_OR_
+
+=== $paramod\adder\WIDTH=s32'00000000000000000000000100000000 ===
+
+        +----------Local Count, excluding submodules.
+        | 
+     1467 wires
+     2488 wire bits
+        5 public wires
+     1026 public wire bits
+        4 ports
+      769 port bits
+     1719 cells
+       13   $_ANDNOT_
+      422   $_AND_
+      644   $_NAND_
+       59   $_NOR_
+        2   $_NOT_
+       58   $_ORNOT_
+      128   $_OR_
+      118   $_XNOR_
+      275   $_XOR_
+
+=== $paramod\data_register\WIDTH=s32'00000000000000000000000100000000 ===
+
+        +----------Local Count, excluding submodules.
+        | 
+        5 wires
+      515 wire bits
+        5 public wires
+      515 public wire bits
+        5 ports
+      515 port bits
+      256 cells
+      256   $_DFFE_PP0P_
+
+=== design hierarchy ===
+
+        +----------Count including submodules.
+        | 
+     7790 montgomery_engine
+       40 $paramod\bit_counter\WIDTH=s32'00000000000000000000000100000000
+     1977 $paramod\cond_sub\WIDTH=s32'00000000000000000000000100000000
+      256 $paramod\montgomery_datapath\WIDTH=s32'00000000000000000000000100000000
+     1719   $paramod\adder\WIDTH=s32'00000000000000000000000100000000
+      256   $paramod\mux2to1\WIDTH=s32'00000000000000000000000100000000
+      525 $paramod\register_bank\WIDTH=s32'00000000000000000000000100000000
+      256   $paramod\data_register\WIDTH=s32'00000000000000000000000100000000
+       18 controller_fsm
+
+        +----------Count including submodules.
+        | 
+     5309 wires
+    17584 wire bits
+      108 public wires
+    12376 public wire bits
+       82 ports
+     9276 port bits
+        - memories
+        - memory bits
+        - processes
+     7790 cells
+      390   $_ANDNOT_
+     1302   $_AND_
+     1035   $_DFFE_PP0P_
+      888   $_MUX_
+     1876   $_NAND_
+      213   $_NOR_
+       11   $_NOT_
+      562   $_ORNOT_
+      343   $_OR_
+      492   $_XNOR_
+      678   $_XOR_
+        5 submodules
+        1   $paramod\bit_counter\WIDTH=s32'00000000000000000000000100000000
+        1   $paramod\cond_sub\WIDTH=s32'00000000000000000000000100000000
+        1   $paramod\montgomery_datapath\WIDTH=s32'00000000000000000000000100000000
+        1   $paramod\register_bank\WIDTH=s32'00000000000000000000000100000000
+        1   controller_fsm
+

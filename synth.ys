@@ -1,0 +1,47 @@
+# ----------------------------------------
+# Montgomery Modular Multiplication Engine
+# Yosys Synthesis Script
+# ----------------------------------------
+
+# Read RTL
+
+read_verilog -sv rtl/mux2to1.sv
+read_verilog -sv rtl/adder.sv
+read_verilog -sv rtl/data_register.sv
+read_verilog -sv rtl/register_bank.sv
+read_verilog -sv rtl/bit_counter.sv
+read_verilog -sv rtl/controller_fsm.sv
+read_verilog -sv rtl/montgomery_datapath.sv
+read_verilog -sv rtl/cond_sub.sv
+read_verilog -sv rtl/montgomery_engine.sv
+
+# Top module
+
+hierarchy -check -top montgomery_engine
+
+# RTL → Netlist
+
+proc
+opt
+
+fsm
+opt
+
+memory
+opt
+
+# Generic synthesis
+
+synth -top montgomery_engine
+
+# Final optimization
+
+opt_clean
+
+# Statistics
+
+tee -o synthesis_report.txt stat
+
+# Synthesized RTL
+
+write_verilog synthesized_engine.v
