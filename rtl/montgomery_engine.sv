@@ -22,6 +22,7 @@ logic [WIDTH-1:0] reg_T;
 
 // Datapath signals
 logic [WIDTH-1:0] datapath_result;
+logic [WIDTH-1:0] T_load_value;
 logic current_bit;
 logic sum_is_odd;
 logic carry_out;
@@ -36,6 +37,8 @@ logic load_B;
 logic load_N;
 logic load_T;
 logic counter_enable;
+
+assign T_load_value = load_A ? '0 : datapath_result;
 
 // Controller FSM
 
@@ -62,6 +65,7 @@ counter (
     .clk(clk),
     .rst(rst),
     .enable(counter_enable),
+    .clear(load_A),
 
     .bit_index(bit_index),
     .done(counter_done)
@@ -82,7 +86,7 @@ registers (
     .A_in(A),
     .B_in(B),
     .N_in(N),
-    .T_in(datapath_result), // Feed datapath result back into T
+    .T_in(T_load_value), // Feed datapath result back into T
 
     .bit_index(bit_index),
 
