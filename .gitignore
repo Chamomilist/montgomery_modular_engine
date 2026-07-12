@@ -1,9 +1,27 @@
-# Simulation executable
+# Tool cache
+.slang/
+
+# Simulation executables
 sim
+sim_*
+
 # Waveforms
+*.vcd
 waves/*.vcd
-# GTKWave save files
+
+# GTKWave
 *.gtkw
-# Temporary/editor files
+
+# Generated synthesis outputs
+*.dot
+*.png
+synthesized_engine.v
+synthesis_report.txt
+
+# Logs / temp
 *.log
 *.tmp
+*.bak
+
+# Editor
+.vscode/
